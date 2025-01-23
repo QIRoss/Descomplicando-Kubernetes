@@ -1,0 +1,35 @@
+Vagrant.configure("2") do |config|
+    # Configuração global
+    config.vm.box = "ubuntu/jammy64" # Use Ubuntu 22.04 (jammy) como base
+  
+    # Definição do Control Plane
+    config.vm.define "control-plane" do |control|
+      control.vm.hostname = "control-plane"
+      control.vm.network "private_network", ip: "192.168.50.10"
+      control.vm.provider "virtualbox" do |vb|
+        vb.memory = 2048
+        vb.cpus = 2
+      end
+    end
+  
+    # Definição do Node 1
+    config.vm.define "node-1" do |node|
+      node.vm.hostname = "node-1"
+      node.vm.network "private_network", ip: "192.168.50.11"
+      node.vm.provider "virtualbox" do |vb|
+        vb.memory = 2048
+        vb.cpus = 2
+      end
+    end
+  
+    # Definição do Node 2
+    config.vm.define "node-2" do |node|
+      node.vm.hostname = "node-2"
+      node.vm.network "private_network", ip: "192.168.50.12"
+      node.vm.provider "virtualbox" do |vb|
+        vb.memory = 2048
+        vb.cpus = 2
+      end
+    end
+  end
+  
